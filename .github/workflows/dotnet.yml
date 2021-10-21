@@ -26,8 +26,8 @@ jobs:
         certutil -decode certificate\certificate.txt certificate\certificate.pfx
     - name: Build
       run: dotnet build --no-restore --configuration Debug
-    - name: Code Sign 2021
+    - name: Code Sign
       run : |
-        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/signtool.exe' sign /f certificate\certificate.pfx /p '${{ secrets.CERTIFICATE_PASS }}' /t http://timestamp.comodoca.com/authenticode PgpCore\bin\Release\PgpCore.dll
+        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/signtool.exe' sign /debug /f certificate\certificate.pfx /p '${{ secrets.CERTIFICATE_PASS }}' /t http://timestamp.comodoca.com/authenticode PgpCore\bin\Release\PgpCore.dll
     - name: Test
       run: dotnet test --no-build --verbosity normal
