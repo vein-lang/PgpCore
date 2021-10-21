@@ -28,6 +28,6 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Code Sign
       run : |
-        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/signtool.exe' sign /debug /f certificate\certificate.pfx /p '${{ secrets.CERTIFICATE_PASS }}' /t http://timestamp.comodoca.com/authenticode PgpCore\bin\netstandard2.0\Release\PgpCore.dll
+        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/signtool.exe' sign /debug /f certificate\certificate.pfx /p '${{ secrets.CERTIFICATE_PASS }}' /t http://timestamp.comodoca.com/authenticode PgpCore\bin\Release\netstandard2.0\PgpCore.dll
     - name: Test
       run: dotnet test --no-build --verbosity normal
