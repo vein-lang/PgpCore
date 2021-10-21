@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Create Code Signing Certificate
+    - name: Create code signing certificate
       run : |
         New-Item -ItemType directory -Path certificate
         Set-Content -Path certificate\certificate.txt -Value '${{ secrets.CERTIFICATE }}'
@@ -28,7 +28,7 @@ jobs:
       run: dotnet build --no-restore --configuration Debug
     - name: Build release
       run: dotnet build --no-restore --configuration Release
-    - name: Code sign
+    - name: Sign release build
       run : |
         & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/signtool.exe' sign /f certificate\certificate.pfx /p '${{ secrets.CERTIFICATE_PASS }}' /t http://timestamp.comodoca.com/authenticode PgpCore\bin\Release\netstandard2.0\PgpCore.dll
     - name: Test
