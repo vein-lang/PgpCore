@@ -2,9 +2,11 @@ name: .NET
 
 on:
   push:
-    branches: [ dev-packageSigning ]
+    branches:
+      - '*'
   pull_request:
-    branches: [ dev-packageSigning ]
+    branches:
+      - '*'
 
 jobs:
   build:
